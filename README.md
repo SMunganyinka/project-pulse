@@ -154,6 +154,8 @@ Users are internal team members; no external authentication needed.
 Project data is lightweight; SQLite suffices.
 
 Dashboard users require basic CRUD functionality.
+
+
 ---
 ## Features Implemented
 
@@ -174,7 +176,7 @@ Dashboard users require basic CRUD functionality.
 
 ---
 
-## Optional Enhancements 
+## Optional Enhancements implemented
 
 - Client-side form validation  
 - Delete project functionality  
