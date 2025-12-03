@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@mantine/core": "^8.3.9",
+    "@mantine/hooks": "^8.3.9",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.4.0"
+  }
+}
