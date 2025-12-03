@@ -135,7 +135,26 @@ npm run dev
 
 
 ---
+## Technical Choices & Reasoning
 
+FastAPI: Lightweight, fast, async-friendly, and comes with automatic Swagger docs. Ideal for a small dashboard.
+
+SQLite: Zero configuration, lightweight, works seamlessly with SQLAlchemy. Perfect for assessment tasks.
+
+React + Vite + TypeScript: Vite offers fast development, React is component-based, and TypeScript ensures type safety.
+
+Tailwind CSS: Rapid and consistent styling for modern UI.
+
+JWT Authentication: Secure token-based system suitable for small apps.
+
+## Assumptions:
+
+Users are internal team members; no external authentication needed.
+
+Project data is lightweight; SQLite suffices.
+
+Dashboard users require basic CRUD functionality.
+---
 ## Features Implemented
 
 ### Frontend
