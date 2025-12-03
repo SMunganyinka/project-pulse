@@ -95,7 +95,7 @@ project-pulse/
 # -----------------------------
 git clone https://github.com/SMunganyinka/project-pulse.git
 cd project-pulse
-## Backend Setup (FastAPI + SQLite)
+
 
 # -----------------------------
 # Backend Setup (FastAPI + SQLite)
