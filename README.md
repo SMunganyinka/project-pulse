@@ -187,7 +187,7 @@ Dashboard users require basic CRUD functionality.
 
 ---
 
-Live demo link is: https://resilient-conkies-07f499.netlify.app/dashboard
+Live demo link is: https://resilient-conkies-07f499.netlify.app
 
 ## License
 
