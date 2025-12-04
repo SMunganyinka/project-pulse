@@ -13,37 +13,34 @@ import {
   Star,
 } from "lucide-react";
 
-// --- 1. Data Separation ---
+// --- Feature type ---
 interface Feature {
   title: string;
   description: string;
   icon: React.ElementType;
 }
 
+// --- Feature Data ---
 const coreFeatures: Feature[] = [
   {
     icon: LayoutDashboard,
     title: "Intuitive Dashboard",
-    description:
-      "Get a clear overview of all your projects in one place with total counts and status summaries.",
+    description: "Get a clear overview of all your projects in one place with total counts and status summaries.",
   },
   {
     icon: ListChecks,
     title: "Project Management",
-    description:
-      "Create, view, and organize your projects easily. Each project displays its name, description, and status.",
+    description: "Create, view, and organize your projects easily. Each project displays its name, description, and status.",
   },
   {
     icon: RefreshCw,
     title: "Real-time Status Updates",
-    description:
-      "Quickly update project progress from Not Started → In Progress → Completed.",
+    description: "Quickly update project progress from Not Started → In Progress → Completed.",
   },
   {
     icon: PlusCircle,
     title: "Quick Project Creation",
-    description:
-      "Add new projects fast with a simple, streamlined form.",
+    description: "Add new projects fast with a simple, streamlined form.",
   },
 ];
 
@@ -51,52 +48,49 @@ const securityFeatures: Feature[] = [
   {
     icon: BarChart2,
     title: "Progress Tracking",
-    description:
-      "Visual indicators help your team understand progress at a glance.",
+    description: "Visual indicators help your team understand progress at a glance.",
   },
   {
     icon: Lock,
     title: "Secure Authentication",
-    description:
-      "Login, register, and manage your personal dashboard safely.",
+    description: "Login, register, and manage your personal dashboard safely.",
   },
   {
     icon: Shield,
     title: "Data Persistence",
-    description:
-      "All project data is stored securely and available anytime.",
+    description: "All project data is stored securely and available anytime.",
   },
 ];
 
-// --- 2. Reusable FeatureCard Component ---
+// --- FeatureCard Component ---
 interface FeatureCardProps {
   feature: Feature;
   isVisible: boolean;
   delay: number;
 }
 
-const FeatureCard: React.FC<FeatureCardProps> = ({ feature, isVisible, delay }) => {
-  return (
-    <div
-      className={`group bg-white border border-gray-200 rounded-xl p-6 shadow hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-      }`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      <div className="flex items-center justify-center w-12 h-12 mb-4 rounded-full bg-indigo-100 text-indigo-600 transition-all duration-300 group-hover:bg-indigo-600 group-hover:text-white">
-        <feature.icon className="w-6 h-6" />
-      </div>
-      <h2 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h2>
-      <p className="text-gray-600 text-sm">{feature.description}</p>
+const FeatureCard: React.FC<FeatureCardProps> = ({ feature, isVisible, delay }) => (
+  <div
+    className={`group bg-white border border-gray-200 rounded-xl p-6 shadow hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 ${
+      isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+    }`}
+    style={{ transitionDelay: `${delay}ms` }}
+  >
+    <div className="flex items-center justify-center w-12 h-12 mb-4 rounded-full bg-indigo-100 text-indigo-600 transition-all duration-300 group-hover:bg-indigo-600 group-hover:text-white">
+      <feature.icon className="w-6 h-6" />
     </div>
-  );
-};
+    <h2 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h2>
+    <p className="text-gray-600 text-sm">{feature.description}</p>
+  </div>
+);
 
-// --- 3. Custom Hook for Scroll Animation with Staggering ---
-const useAnimateOnScroll = (ref: React.RefObject<HTMLDivElement>) => {
+// --- Scroll Animation Hook ---
+const useAnimateOnScroll = (ref: React.RefObject<HTMLDivElement | null>) => {
   const [isIntersecting, setIsIntersecting] = useState(false);
 
   useEffect(() => {
+    if (!ref.current) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -107,43 +101,34 @@ const useAnimateOnScroll = (ref: React.RefObject<HTMLDivElement>) => {
       { threshold: 0.1 }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
+    observer.observe(ref.current);
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
+      if (ref.current) observer.unobserve(ref.current);
     };
   }, [ref]);
 
   return isIntersecting;
 };
 
-// --- 4. Main Component ---
+// --- Main Component ---
 const FeaturesPage: React.FC = () => {
   const { isAuthenticated } = useAuth();
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement | null>(null);
   const isVisible = useAnimateOnScroll(sectionRef);
 
   return (
     <div className="relative bg-gray-50 overflow-hidden">
-      {/* Background decoration */}
       <div className="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 rounded-full opacity-20 blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80  rounded-full opacity-20 blur-3xl"></div>
-      
+      <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 rounded-full opacity-20 blur-3xl"></div>
+
       <div className="relative max-w-7xl mx-auto px-6 py-16">
-        {/* Header Text */}
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Powerful Features for Your Team
-          </h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Powerful Features for Your Team</h1>
           <p className="text-gray-600 text-sm md:text-base">
             Project Pulse focuses on the essentials for small teams: clarity, speed, and a shared understanding of what matters right now.
           </p>
-          
-          {/* Testimonial */}
+
           <div className="mt-8 flex items-center justify-center">
             <div className="flex items-center">
               {[1, 2, 3, 4, 5].map((star) => (
@@ -154,39 +139,26 @@ const FeaturesPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Core Features Section */}
         <div ref={sectionRef} className="space-y-16">
           <div>
             <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">Core Functionality</h2>
             <div className="grid gap-8 md:grid-cols-2">
               {coreFeatures.map((feature, index) => (
-                <FeatureCard 
-                  key={feature.title} 
-                  feature={feature} 
-                  isVisible={isVisible} 
-                  delay={index * 100} 
-                />
+                <FeatureCard key={feature.title} feature={feature} isVisible={isVisible} delay={index * 100} />
               ))}
             </div>
           </div>
 
-          {/* Security & Reliability Section */}
           <div>
             <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">Security & Reliability</h2>
             <div className="grid gap-8 md:grid-cols-3">
               {securityFeatures.map((feature, index) => (
-                <FeatureCard 
-                  key={feature.title} 
-                  feature={feature} 
-                  isVisible={isVisible} 
-                  delay={index * 100} 
-                />
+                <FeatureCard key={feature.title} feature={feature} isVisible={isVisible} delay={index * 100} />
               ))}
             </div>
           </div>
         </div>
 
-        {/* Call to Action */}
         <div className="mt-20 w-full max-w-3xl mx-auto bg-white rounded-xl p-8 shadow-lg text-center">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Ready to get started?</h2>
           <p className="text-sm text-gray-600 sm:text-base mb-6">

@@ -187,6 +187,8 @@ Dashboard users require basic CRUD functionality.
 
 ---
 
+Live demo link is: https://resilient-conkies-07f499.netlify.app/dashboard
+
 ## License
 
 This project was created as part of the ***Nexventures Ltd. Full-Stack Software Engineering Internship Technical Assessment***.
