@@ -103,10 +103,10 @@ const Footer: React.FC = () => {
             <p className="text-xs text-slate-600">
               Email:{" "}
               <a
-                href="mailto:contact@nexventures.com"
+                href="mailto:info@nexventures.net"
                 className="text-indigo-600 hover:text-indigo-700 transition-colors"
               >
-                contact@nexventures.com
+                info@nexventures.net
               </a>
             </p>
           </div>

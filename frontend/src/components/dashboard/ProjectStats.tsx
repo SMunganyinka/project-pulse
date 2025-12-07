@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import type { Project } from "../api/projects";
+import type { Project } from "../../api/projects";
 
 interface Props {
   projects: Project[];
@@ -215,9 +215,6 @@ const ProjectStats: React.FC<Props> = ({ projects }) => {
           <p className="text-sm text-slate-500 max-w-sm">
             Create your first project to start tracking your progress and see statistics here.
           </p>
-          <button className="mt-4 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-indigo-700">
-            Create Your First Project
-          </button>
         </div>
       </div>
     );

@@ -8,6 +8,8 @@ export interface Project {
   description?: string | null;
   status: ProjectStatus;
   owner_id: number;
+  createdAt: string;  
+  updatedAt: string;  
 }
 
 export interface CreateProjectPayload {

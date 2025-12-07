@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
 
   return (
     <header className="fixed inset-x-0 top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+      <nav className="mx-auto flex max-w-11/12 items-center justify-between px-4 py-3">
         {/* Brand */}
         <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1">
           <span className="flex h-7 w-7 items-center justify-center rounded-full bg-indigo-600 text-xs font-bold text-white">

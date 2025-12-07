@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import type { Project, ProjectStatus } from "../api/projects";
+import type { Project, ProjectStatus } from "../../api/projects";
 
 interface EditPayload {
   name: string;

@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useCallback, useRef } from "react";
-import type { Project, ProjectStatus } from "../api/projects";
+import type { Project, ProjectStatus } from "../../api/projects";
 import ProjectCard from "./ProjectCard";
 
 interface Props {
@@ -270,25 +270,7 @@ const ProjectBoard: React.FC<Props> = ({
 
   return (
     <div className="space-y-4">
-      {/* Statistics Summary */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-        <div className="bg-white rounded-lg border border-slate-200 p-3 shadow-sm">
-          <div className="text-xs text-slate-500 mb-1">Total Projects</div>
-          <div className="text-2xl font-bold text-slate-900">{stats.total}</div>
-        </div>
-        <div className="bg-white rounded-lg border border-slate-200 p-3 shadow-sm">
-          <div className="text-xs text-slate-500 mb-1">Not Started</div>
-          <div className="text-2xl font-bold text-slate-600">{stats.byStatus.NOT_STARTED}</div>
-        </div>
-        <div className="bg-white rounded-lg border border-slate-200 p-3 shadow-sm">
-          <div className="text-xs text-slate-500 mb-1">In Progress</div>
-          <div className="text-2xl font-bold text-blue-600">{stats.byStatus.IN_PROGRESS}</div>
-        </div>
-        <div className="bg-white rounded-lg border border-slate-200 p-3 shadow-sm">
-          <div className="text-xs text-slate-500 mb-1">Completed</div>
-          <div className="text-2xl font-bold text-green-600">{stats.byStatus.COMPLETED}</div>
-        </div>
-      </div>
+    
 
       {/* Controls Header */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

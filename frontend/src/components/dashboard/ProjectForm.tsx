@@ -1,5 +1,7 @@
+// src/components/dashboard/ProjectForm.tsx
+
 import React, { useState, useEffect } from "react";
-import type { CreateProjectPayload, ProjectStatus } from "../api/projects";
+import type { CreateProjectPayload, ProjectStatus } from "../../api/projects";
 
 interface Props {
   onSubmit: (data: CreateProjectPayload) => Promise<void>;
@@ -23,8 +25,6 @@ const statusOptions: { value: ProjectStatus; label: string }[] = [
 ];
 
 // --- Icon Components ---
-// 
-
 const ExclamationIcon = () => (
   <svg className="h-5 w-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
     <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 102 0zm-1-9a1 1 0 00-1 1v4a1 1 0 00-1 1z" clipRule="evenodd" />
@@ -168,12 +168,17 @@ const ProjectForm: React.FC<Props> = ({
   const canSubmit = name.trim() && status !== "" && !hasErrors;
 
   return (
-    // Modal overlay without dark backdrop
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      {/* Modal content with shadow to make it stand out */}
+    // Main modal container
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      // --- KEY CHANGE: Clicking on the empty space around the form will close it ---
+      onClick={onCancel}
+    >
+      {/* Modal content card */}
+      {/* --- KEY CHANGE: This prevents clicks inside the form from closing it --- */}
       <div 
         className="relative w-full max-w-md transform overflow-hidden rounded-lg bg-white p-6 text-left shadow-xl border border-gray-200 transition-all"
-        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the modal
+        onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
         <button

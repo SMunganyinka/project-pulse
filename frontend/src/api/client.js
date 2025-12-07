@@ -1,7 +1,7 @@
 import axios, { AxiosHeaders } from "axios";
 // Create Axios instance
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_BASE_URL ?? "https://project-pulse-3.onrender.com",
+    baseURL: import.meta.env.VITE_API_BASE_URL ?? "http://127.0.0.1:8000",
 });
 // Interceptor to attach Authorization token
 api.interceptors.request.use((config) => {
